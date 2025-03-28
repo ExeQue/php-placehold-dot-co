@@ -7,6 +7,9 @@ namespace ExeQue\PlaceholdDotCo\Data;
 use RuntimeException;
 use Webmozart\Assert\Assert;
 
+/**
+ * @property-read string $contents
+ */
 class Image
 {
     public readonly string $uri;
@@ -17,14 +20,6 @@ class Image
     private mixed $resource;
 
     public readonly int $size;
-
-    public string $contents {
-        get {
-            rewind($this->resource());
-
-            return stream_get_contents($this->resource());
-        }
-    }
 
     public function __construct(
         string $uri,
@@ -69,5 +64,16 @@ class Image
         }
 
         return $this->resource;
+    }
+
+    public function __get(string $name)
+    {
+        if ($name === 'contents') {
+            rewind($this->resource());
+
+            return stream_get_contents($this->resource());
+        }
+
+        throw new RuntimeException(sprintf('Property %s does not exist.', $name));
     }
 }
