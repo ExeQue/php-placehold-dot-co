@@ -29,6 +29,9 @@ it('is immutable', function () {
 
     $mutated = $original->avif();
     expect($mutated)->not->toBe($original);
+
+    $mutated = $original->gif();
+    expect($mutated)->not->toBe($original);
 });
 
 it('can set format', function () {
@@ -62,4 +65,8 @@ it('sets the format correctly using specific format methods', function () {
     $builder = $builder->avif();
     expect($builder->getFormat())->toBe(Format::AVIF)
         ->and($builder->renderFormat())->toBe(Format::AVIF->value);
+
+    $builder = $builder->gif();
+    expect($builder->getFormat())->toBe(Format::GIF)
+        ->and($builder->renderFormat())->toBe(Format::GIF->value);
 });

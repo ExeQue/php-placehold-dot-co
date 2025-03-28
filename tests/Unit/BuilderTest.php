@@ -46,7 +46,7 @@ it('renders an image', function () {
         ->color('black', 'white')
         ->x2()
         ->png()
-        ->render();
+        ->get();
 
     expect($image->uri)->toBe($expectedUri)
         ->and($image->mime)->toBe('image/png')

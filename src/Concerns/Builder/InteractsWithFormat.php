@@ -39,6 +39,11 @@ trait InteractsWithFormat
         return $this->format(Format::SVG);
     }
 
+    public function gif(): static
+    {
+        return $this->format(Format::GIF);
+    }
+
     public function avif(): static
     {
         return $this->format(Format::AVIF);

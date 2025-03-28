@@ -1,5 +1,5 @@
 {
-    "name": "exeque/placeholdco",
+    "name": "exeque/placehold-dot-co",
     "description": "Wrapper for Placehold.co placeholder images",
     "type": "library",
     "require": {
@@ -10,7 +10,6 @@
         "roave/security-advisories": "dev-latest",
         "pestphp/pest": "^3.7",
         "symfony/var-dumper": "^7.2",
-        "symfony/cache": "^7.2",
         "laravel/pint": "^1.21",
         "mockery/mockery": "^1.6",
         "pestphp/pest-plugin-type-coverage": "^3.4"
@@ -36,5 +35,17 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "scripts": {
+        "test": "php vendor/bin/pest",
+        "test:coverage": "php vendor/bin/pest --coverage",
+        "test:types": "php vendor/bin/pest --type-coverage",
+        "test:mutations": "php vendor/bin/pest --mutate",
+        "test:all": [
+            "@test",
+            "@test:coverage",
+            "@test:types",
+            "@test:mutations"
+        ]
     }
 }

@@ -28,7 +28,7 @@ class Builder
     ) {
     }
 
-    public function render(): Image
+    public function get(): Image
     {
         $uri = $this->uri();
 
