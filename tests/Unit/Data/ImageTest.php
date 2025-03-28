@@ -83,3 +83,16 @@ it('sets the mime to match the format', function () {
         expect($image->mime)->toBe($format->mime());
     }
 });
+
+it('throws an error if attempting to read an invalid property', function () {
+    $stream = fopen('php://temp', 'rb+');
+    fwrite($stream, 'foobar');
+
+    $image = new Image('foobar', Format::AVIF, fopen('php://temp', 'rb+'));
+
+    expect(fn () => $image->contents)->not->toThrow(RuntimeException::class)
+        ->and(fn () => $image->invalidProperty)->toThrow(
+            RuntimeException::class,
+            'Undefined property: ExeQue\PlaceholdDotCo\Data\Image::$invalidProperty'
+        );
+});

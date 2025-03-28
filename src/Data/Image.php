@@ -74,6 +74,6 @@ class Image
             return stream_get_contents($this->resource());
         }
 
-        throw new RuntimeException(sprintf('Property %s does not exist.', $name));
+        throw new RuntimeException(sprintf('Undefined property: %s::$%s', __CLASS__, $name));
     }
 }
