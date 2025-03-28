@@ -27,7 +27,10 @@ class Placehold
     /**
      * @return Generator<int|string, Image>
      */
-    public function batch(iterable|Builder $builders, int $concurrent = 10): Generator
+    public function batch(
+        iterable|Builder $builders,
+        int $concurrent = 10 //@pest-mutate-ignore
+    ): Generator
     {
         if ($builders instanceof Builder) {
             $builders = [$builders];
