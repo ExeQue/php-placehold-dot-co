@@ -41,7 +41,7 @@ class Builder
 
     public function uri(): UriInterface
     {
-        return new Uri()
+        return (new Uri())
             ->withScheme('https')
             ->withHost('placehold.co')
             ->withPath($this->renderPath())
