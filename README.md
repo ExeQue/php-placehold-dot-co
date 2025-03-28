@@ -292,6 +292,36 @@ $images['second']; // URI of the second image
 
 ```
 
+## FakerPHP Provider
+
+This library also provides a FakerPHP provider to generate placeholder images.
+
+Most, but not all, features are available in the `Faker` provider.
+
+Check the phpdoc for the `ImageProvider` class for more information.
+
+```php
+
+use ExeQue\PlaceholdDotCo\Faker\ImageProvider;
+use ExeQue\PlaceholdDotCo\Placehold;
+use Faker\Factory;
+use Faker\Generator;
+
+$provider = new ImageProvider(
+    new Placehold() // [Optional] Can be configured with a Placehold instance
+); 
+
+/** @var Generator|ImageProvider $faker */
+$faker = Factory::create();
+
+$faker->addProvider($provider);
+
+$faker->placeholdCoUrl();       // Create a url for a placeholder image
+$faker->placeholdCoImage();     // Create a placeholder image as a string
+$faker->placeholdCoResource();  // Create a placeholder image as a resource
+
+```
+
 ## Testing
 
 You can run the tests using the following command:

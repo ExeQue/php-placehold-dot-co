@@ -10,6 +10,7 @@ use ExeQue\PlaceholdDotCo\Concerns\Builder\InteractsWithFormat;
 use ExeQue\PlaceholdDotCo\Concerns\Builder\InteractsWithRetina;
 use ExeQue\PlaceholdDotCo\Concerns\Builder\InteractsWithSize;
 use ExeQue\PlaceholdDotCo\Concerns\Builder\InteractsWithText;
+use ExeQue\PlaceholdDotCo\Concerns\Builder\IsConditional;
 use ExeQue\PlaceholdDotCo\Data\Image;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
@@ -22,6 +23,8 @@ class Builder
     use InteractsWithSize;
     use InteractsWithText;
     use InteractsWithRetina;
+
+    use IsConditional;
 
     public function __construct(
         private readonly Client $client,
