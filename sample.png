@@ -1,0 +1,30 @@
+
+Fatal error: Uncaught GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: 1920x1080.png (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) in /var/www/html/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php:275
+Stack trace:
+#0 /var/www/html/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php(205): GuzzleHttp\Handler\CurlFactory::createRejection(Object(GuzzleHttp\Handler\EasyHandle), Array)
+#1 /var/www/html/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php(157): GuzzleHttp\Handler\CurlFactory::finishError(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#2 /var/www/html/vendor/guzzlehttp/guzzle/src/Handler/CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish(Object(GuzzleHttp\Handler\CurlHandler), Object(GuzzleHttp\Handler\EasyHandle), Object(GuzzleHttp\Handler\CurlFactory))
+#3 /var/www/html/vendor/guzzlehttp/guzzle/src/Handler/Proxy.php(28): GuzzleHttp\Handler\CurlHandler->__invoke(Object(GuzzleHttp\Psr7\Request), Array)
+#4 /var/www/html/vendor/guzzlehttp/guzzle/src/Handler/Proxy.php(48): GuzzleHttp\Handler\Proxy::{closure:GuzzleHttp\Handler\Proxy::wrapSync():27}(Object(GuzzleHttp\Psr7\Request), Array)
+#5 /var/www/html/vendor/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php(35): GuzzleHttp\Handler\Proxy::{closure:GuzzleHttp\Handler\Proxy::wrapStreaming():47}(Object(GuzzleHttp\Psr7\Request), Array)
+#6 /var/www/html/vendor/guzzlehttp/guzzle/src/Middleware.php(31): GuzzleHttp\PrepareBodyMiddleware->__invoke(Object(GuzzleHttp\Psr7\Request), Array)
+#7 /var/www/html/vendor/guzzlehttp/guzzle/src/RedirectMiddleware.php(55): GuzzleHttp\Middleware::{closure:{closure:GuzzleHttp\Middleware::cookies():28}:29}(Object(GuzzleHttp\Psr7\Request), Array)
+#8 /var/www/html/vendor/guzzlehttp/guzzle/src/Middleware.php(63): GuzzleHttp\RedirectMiddleware->__invoke(Object(GuzzleHttp\Psr7\Request), Array)
+#9 /var/www/html/vendor/guzzlehttp/guzzle/src/HandlerStack.php(75): GuzzleHttp\Middleware::{closure:{closure:GuzzleHttp\Middleware::httpErrors():60}:61}(Object(GuzzleHttp\Psr7\Request), Array)
+#10 /var/www/html/vendor/guzzlehttp/guzzle/src/Client.php(333): GuzzleHttp\HandlerStack->__invoke(Object(GuzzleHttp\Psr7\Request), Array)
+#11 /var/www/html/vendor/guzzlehttp/guzzle/src/Client.php(106): GuzzleHttp\Client->transfer(Object(GuzzleHttp\Psr7\Request), Array)
+#12 /var/www/html/vendor/guzzlehttp/guzzle/src/Client.php(138): GuzzleHttp\Client->sendAsync(Object(GuzzleHttp\Psr7\Request), Array)
+#13 /var/www/html/src/Client.php(26): GuzzleHttp\Client->sendRequest(Object(GuzzleHttp\Psr7\Request))
+#14 /var/www/html/src/Client.php(33): ExeQue\PlaceholdDotCo\Client->{closure:ExeQue\PlaceholdDotCo\Client::get():26}()
+#15 /var/www/html/src/Client.php(25): ExeQue\PlaceholdDotCo\Client->wrap(Object(Closure))
+#16 /var/www/html/src/Builder.php(33): ExeQue\PlaceholdDotCo\Client->get('1920x1080.png', Array)
+#17 /var/www/html/playground.php(9): ExeQue\PlaceholdDotCo\Builder->render()
+#18 {main}
+
+Next ExeQue\PlaceholdDotCo\Exceptions\PlaceholdException: cURL error 6: Could not resolve host: 1920x1080.png (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) in /var/www/html/src/Client.php:35
+Stack trace:
+#0 /var/www/html/src/Client.php(25): ExeQue\PlaceholdDotCo\Client->wrap(Object(Closure))
+#1 /var/www/html/src/Builder.php(33): ExeQue\PlaceholdDotCo\Client->get('1920x1080.png', Array)
+#2 /var/www/html/playground.php(9): ExeQue\PlaceholdDotCo\Builder->render()
+#3 {main}
+  thrown in /var/www/html/src/Client.php on line 35
