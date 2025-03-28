@@ -66,7 +66,7 @@ it('can create a batch of images', function () {
         ->and($images['second']->size)->toBe(6);
 });
 
-it('allows for batching with a single builder', function() {
+it('allows for batching with a single builder', function () {
     $placehold = new Placehold(
         mock(Client::class, function (MockInterface $mock) {
             $mock->allows('getAsync')
@@ -98,7 +98,7 @@ it('allows for batching with a single builder', function() {
         ->and($images[0]->size)->toBe(6);
 });
 
-it('should throw an error if batching with a non-builder', function() {
+it('should throw an error if batching with a non-builder', function () {
     $placehold = new Placehold();
 
     $generator = $placehold->batch([
