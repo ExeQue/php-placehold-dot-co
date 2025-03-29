@@ -3,4 +3,5 @@ vendor
 composer.lock
 
 .cache
+local.flag
 playground.php
