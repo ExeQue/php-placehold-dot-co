@@ -67,6 +67,7 @@ $builder = $placehold->builder();
 $builder->size(1920, 1080);
 $builder->width(1920);
 $builder->height(1080);
+$builder->square(1000);
 ```
 
 It is also possible to change the orientation of the image by using the `landscape()` and `portrait()` methods.
@@ -245,6 +246,27 @@ $builder->roboto();
 // Source Sans Pro
 $builder->font(Font::SourceSansPro);
 $builder->sourceSansPro();
+```
+
+### Conditional Methods
+
+If you want to use the builder methods conditionally, you can use the `when()` method.
+
+```php
+use ExeQue\PlaceholdDotCo\Builder;
+use ExeQue\PlaceholdDotCo\Placehold;
+
+$placehold = new Placehold();
+
+$builder = $placehold->builder();
+
+$condition = true;
+$callableCondition = fn() => true;
+
+$builder
+    ->when($condition, fn(Builder $builder) => $builder->square(400))
+    ->when($callableCondition, fn(Builder $builder) => $builder->square(400));
+
 ```
 
 ## URL Generation
