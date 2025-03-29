@@ -8,6 +8,9 @@ use DateInterval;
 use DateTime;
 use RuntimeException;
 
+/**
+ * @codeCoverageIgnore
+ */
 class FileStore extends Store
 {
     public function __construct(

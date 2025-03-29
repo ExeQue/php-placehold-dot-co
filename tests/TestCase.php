@@ -30,6 +30,10 @@ abstract class TestCase extends BaseTestCase
 
     private function clearCacheDirectory(): void
     {
+        if (Environment::name() === Environment::CI) {
+            return;
+        }
+
         if ($this->filesystem->exists($this->cacheDirectory)) {
             $this->filesystem->remove($this->cacheDirectory);
         }
@@ -37,7 +41,7 @@ abstract class TestCase extends BaseTestCase
 
     public function skipOnCi()
     {
-        if(Environment::name() === Environment::CI) {
+        if (Environment::name() === Environment::CI) {
             $this->markTestSkipped('This test is skipped on CI.');
         }
 
