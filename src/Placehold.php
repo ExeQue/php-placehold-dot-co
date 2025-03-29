@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
 class Placehold
 {
     public function __construct(
-        private Client $client = new Client(),
+        private readonly Client $client = new Client()
     ) {
     }
 
@@ -30,8 +30,7 @@ class Placehold
     public function batch(
         iterable|Builder $builders,
         int $concurrent = 10 //@pest-mutate-ignore
-    ): Generator
-    {
+    ): Generator {
         if ($builders instanceof Builder) {
             $builders = [$builders];
         }

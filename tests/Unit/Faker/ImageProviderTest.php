@@ -24,7 +24,7 @@ it('can create an image url', function () {
     );
 
     expect($actual)->toBe($expected);
-})->skip(Environment::name() === Environment::CI, 'Skip test on CI');
+})->skipOnCi();
 
 it('can create an image', function () {
     /** @var \Faker\Generator|ImageProvider $faker */
@@ -41,7 +41,7 @@ it('can create an image', function () {
     );
 
     expect($actual)->toMatch('/^.PNG/');
-})->skip(Environment::name() === Environment::CI, 'Skip test on CI');
+})->skipOnCi();
 
 it('can create an image resource', function () {
     /** @var \Faker\Generator|ImageProvider $faker */
@@ -58,4 +58,4 @@ it('can create an image resource', function () {
     );
 
     expect($actual)->toBeResource();
-})->skip(Environment::name() === Environment::CI, 'Skip test on CI');
+})->skipOnCi();

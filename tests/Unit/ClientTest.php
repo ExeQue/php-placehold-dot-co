@@ -14,7 +14,6 @@ use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Uri;
-use GuzzleHttp\RequestOptions;
 use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 
@@ -121,7 +120,7 @@ it('fails if given a non-uri using `getAsync`', function () {
 it('sends the correct headers', function () {
     $client = new Client(
         new Guzzle([
-            'handler' => function(RequestInterface $request, array $options) {
+            'handler' => function (RequestInterface $request, array $options) {
                 expect($request->getHeaderLine('User-Agent'))->toStartWith('ExeQue/PlaceholdDotCo');
 
                 return new Response(200);
@@ -130,4 +129,55 @@ it('sends the correct headers', function () {
     );
 
     $client->get(new Uri('foo.bar'));
+});
+
+it('caches responses', function () {
+    $client = new Client(
+        new Guzzle([
+            'handler' => MockHandler::createWithMiddleware([
+                new Response(200, body: 'foobar'),
+            ]),
+        ]),
+    );
+
+    $client->get(new Uri('foo.bar'));
+    $client->get(new Uri('foo.bar'));
+
+    $this->expectNotToPerformAssertions();
+});
+
+it('deduplicates requests when async', function () {
+    $client = new Client(
+        new Guzzle([
+            'handler' => MockHandler::createWithMiddleware([
+                new Response(200, body: 'foobar'),
+            ]),
+        ]),
+    );
+
+    $generator = $client->getAsync([
+        'first' => new Uri('foo.bar'),
+        'second' => new Uri('foo.bar'),
+    ]);
+
+    expect($generator)->toBeInstanceOf(Generator::class);
+
+    $resources = iterator_to_array($generator);
+
+    expect($resources)->toHaveCount(2)
+        ->and(stream_get_contents($resources['first']))->toBe('foobar')
+        ->and(stream_get_contents($resources['second']))->toBe('foobar');
+
+    $generator = $client->getAsync([
+        'first' => new Uri('foo.bar'),
+        'second' => new Uri('foo.bar'),
+    ]);
+
+    expect($generator)->toBeInstanceOf(Generator::class);
+
+    $resources = iterator_to_array($generator);
+
+    expect($resources)->toHaveCount(2)
+        ->and(stream_get_contents($resources['first']))->toBe('foobar')
+        ->and(stream_get_contents($resources['second']))->toBe('foobar');
 });

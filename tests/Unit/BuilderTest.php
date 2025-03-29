@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use ExeQue\PlaceholdDotCo\Builder;
+use ExeQue\PlaceholdDotCo\Cache\ImageStore;
 use ExeQue\PlaceholdDotCo\Client;
 use Mockery\MockInterface;
 

@@ -314,6 +314,39 @@ $images['second']; // URI of the second image
 
 ```
 
+### Caching
+
+The library supports caching the images to optimize performance.
+
+By default, the library uses the `php://temp` stream to store the images. The cache is handled on the internal HTTP client.
+
+```php
+use ExeQue\PlaceholdDotCo\Cache\ImageStore;
+use ExeQue\PlaceholdDotCo\Client;
+use ExeQue\PlaceholdDotCo\Placehold;
+
+// Store the images in system temp directory (default)
+$store = ImageStore::temp();
+
+// Store the images in a custom directory
+$store = ImageStore::file('path/to/cache');
+
+// Store the images in memory
+$store = ImageStore::memory();
+
+// Store the images in a null store (no caching)
+$store = ImageStore::null();
+
+$placehold = new Placehold(
+    new Client(
+        imageStore: $store
+    )
+)
+
+```
+
+You can also create custom stores by implementing the `ExeQue\PlaceholdDotCo\Cache\Contracts\ImageStore` interface.
+
 ## FakerPHP Provider
 
 This library also provides a FakerPHP provider to generate placeholder images.
@@ -352,7 +385,6 @@ You can run the tests using the following command:
 composer test           # run unit tests
 composer test:coverage  # run unit tests with coverage
 composer test:types     # run type coverage tests
-composer test:mutation  # run mutation tests
 
 composer test:all       # run all tests
 ```

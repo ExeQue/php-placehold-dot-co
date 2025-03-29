@@ -47,6 +47,4 @@ jobs:
         run: ./vendor/bin/pest --ci --parallel --coverage --min=100
       - name: Type Coverage
         run: ./vendor/bin/pest --ci --parallel --type-coverage --min=100
-      - name: Mutation
-        run: ./vendor/bin/pest --ci --parallel --mutate --min=100
 

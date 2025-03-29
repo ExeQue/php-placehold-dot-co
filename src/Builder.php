@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace ExeQue\PlaceholdDotCo;
 
+use ExeQue\PlaceholdDotCo\Cache\Distinct\NullStore;
+use ExeQue\PlaceholdDotCo\Cache\Distinct\TempStore;
+use ExeQue\PlaceholdDotCo\Cache\ImageStore;
 use ExeQue\PlaceholdDotCo\Concerns\Builder\InteractsWithColor;
 use ExeQue\PlaceholdDotCo\Concerns\Builder\InteractsWithFont;
 use ExeQue\PlaceholdDotCo\Concerns\Builder\InteractsWithFormat;
@@ -36,7 +39,7 @@ class Builder
         $uri = $this->uri();
 
         return new Image(
-            (string) $uri,
+            (string)$uri,
             $this->format,
             $this->client->get($uri),
         );

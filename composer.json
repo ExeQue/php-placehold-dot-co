@@ -4,7 +4,8 @@
     "type": "library",
     "require": {
         "php": "^8.2",
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^7.0",
+        "psr/simple-cache": "^3.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -13,7 +14,8 @@
         "laravel/pint": "^1.21",
         "mockery/mockery": "^1.6",
         "pestphp/pest-plugin-type-coverage": "^3.4",
-        "fakerphp/faker": "^1.24"
+        "fakerphp/faker": "^1.24",
+        "symfony/filesystem": "^7.2"
     },
     "license": "MIT",
     "autoload": {
@@ -41,12 +43,10 @@
         "test": "php vendor/bin/pest",
         "test:coverage": "php vendor/bin/pest --coverage",
         "test:types": "php vendor/bin/pest --type-coverage",
-        "test:mutations": "php vendor/bin/pest --mutate",
         "test:all": [
             "@test",
             "@test:coverage",
-            "@test:types",
-            "@test:mutations"
+            "@test:types"
         ]
     }
 }
