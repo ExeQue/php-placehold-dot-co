@@ -5,7 +5,8 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.0",
-        "psr/simple-cache": "^3.0"
+        "psr/simple-cache": "^3.0",
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
